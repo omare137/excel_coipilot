@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>AI Analyst</title>
+    <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/11.0.0/css/fabric.min.css"/>
+    <link rel="stylesheet" href="taskpane.css"/>
+    <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+    <script type="text/javascript" src="taskpane.js"></script>
+    <script>
+        // Auto-redirect to bypass ngrok warning
+        window.addEventListener('load', function() {
+            // Check if we're on the ngrok warning page
+            if (document.body.innerHTML.includes('You are about to visit') || 
+                document.body.innerHTML.includes('Visit Site')) {
+                // Auto-click the visit button immediately
+                const visitBtn = document.querySelector('button[onclick*="visit"]') || 
+                               document.querySelector('a[href*="visit"]') ||
+                               document.querySelector('button:contains("Visit Site")');
+                if (visitBtn) {
+                    visitBtn.click();
+                } else {
+                    // Fallback: try to find any button and click it
+                    const buttons = document.querySelectorAll('button');
+                    for (let btn of buttons) {
+                        if (btn.textContent.toLowerCase().includes('visit')) {
+                            btn.click();
+                            break;
+                        }
+                    }
+                }
+            }
+        });
+        
+        // Also try on DOMContentLoaded
+        document.addEventListener('DOMContentLoaded', function() {
+            if (document.body.innerHTML.includes('You are about to visit') || 
+                document.body.innerHTML.includes('Visit Site')) {
+                const visitBtn = document.querySelector('button[onclick*="visit"]') || 
+                               document.querySelector('a[href*="visit"]') ||
+                               document.querySelector('button:contains("Visit Site")');
+                if (visitBtn) {
+                    visitBtn.click();
+                }
+            }
+        });
+    </script>
+</head>
+<body class="ms-font-m ms-Fabric">
+    <div class="container">
+        <h2 id="agent-header"></h2>
+        <h1 class="ms-font-xl">AI Analyst</h1>
+        <p class="ms-font-m">Enter your analysis request below. The AI will use your currently selected data.</p>
+        
+        <div class="ms-TextField">
+            <label class="ms-Label">Your Prompt:</label>
+            <textarea id="prompt-input" class="ms-TextField-field" rows="4" placeholder="e.g., Create a bar chart of sales by region"></textarea>
+        </div>
+
+        <button id="run-button" class="ms-Button ms-Button--primary">
+            <span class="ms-Button-label">Run Analysis</span>
+        </button>
+
+        <div id="status" class="status-panel"></div>
+        <div id="result-display"></div>
+    </div>
+</body>
+</html>

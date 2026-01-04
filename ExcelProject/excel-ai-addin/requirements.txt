@@ -1,0 +1,9 @@
+openai
+pandas
+openpyxl
+xlwings
+matplotlib
+python-dotenv
+pyyaml
+Flask
+Flask-Cors

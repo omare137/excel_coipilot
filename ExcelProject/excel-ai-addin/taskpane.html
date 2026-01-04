@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <title>Excel AI Assistant</title>
+    <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/11.0.0/css/fabric.min.css"/>
+    <link rel="stylesheet" href="taskpane.css?v=5"/>
+    <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+    <script type="text/javascript" src="taskpane.js?v=5"></script>
+    <script>
+        // Auto-click ngrok warning if present
+        window.addEventListener('load', function() {
+            const visitButton = document.querySelector('button[onclick*="visit"]') || 
+                               document.querySelector('a[href*="visit"]') ||
+                               document.querySelector('button:contains("Visit Site")');
+            if (visitButton) {
+                visitButton.click();
+            }
+        });
+    </script>
+</head>
+<body class="chat-interface">
+    <!-- Chat Header -->
+    <div class="chat-header">
+        <div class="header-content">
+            <div class="ai-avatar">
+                <div class="avatar-icon">+</div>
+            </div>
+            <div class="header-info">
+                <h1>Excel AI</h1>
+                <p id="status-text">Ready to help</p>
+            </div>
+        </div>
+        <div class="header-actions">
+            <select id="agent-select" class="agent-selector">
+                <option value="assistant">General Assistant</option>
+                <option value="graph">Create Visuals</option>
+                <option value="cleaning">Clean Data</option>
+                <option value="formula">Excel Formulas</option>
+            </select>
+        </div>
+    </div>
+    
+    <!-- Chat Messages -->
+    <div class="chat-messages" id="chat-messages">
+        <!-- Welcome Message -->
+        <div class="message ai-message">
+            <div class="message-avatar">
+                <div class="avatar-icon">+</div>
+            </div>
+            <div class="message-content">
+                <div class="message-header">
+                    <span class="message-sender">Excel AI</span>
+                    <span class="message-time">now</span>
+                </div>
+                <div class="message-text">
+                    <p>Hi! 👋 I'm your Excel AI assistant. I can help you:</p>
+                    <ul>
+                        <li>Create charts and visualizations</li>
+                        <li>Clean and analyze your data</li>
+                        <li>Generate Excel formulas</li>
+                        <li>Answer questions about your spreadsheet</li>
+                    </ul>
+                    <p>What would you like me to help you with today?</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <!-- Chat Input -->
+    <div class="chat-input-container">
+        <div class="chat-input-wrapper">
+            <div class="input-icon">+</div>
+            <textarea 
+                id="prompt-input" 
+                class="chat-input" 
+                placeholder="Message Excel AI..."
+                rows="1"
+            ></textarea>
+            <button id="run-button" class="send-button">
+                <span class="send-icon">✨</span>
+            </button>
+        </div>
+    </div>
+    
+    <!-- Status Panel (Hidden by default) -->
+    <div id="status" class="status-panel hidden"></div>
+</body>
+</html> 

@@ -1,0 +1,7 @@
+gpt:
+  model: gpt-3.5-turbo
+  temperature: 0.2
+  max_tokens: 1024
+execution:
+  allow_charts: true
+  timeout_seconds: 30
